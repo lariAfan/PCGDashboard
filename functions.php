@@ -10,7 +10,7 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]);
     if ($nome != $_SESSION['pokemonAnterior']) {
-        send_whatsapp(" Teste de tempo de pokemon ".$nome."!!");
+        //send_whatsapp(" Teste de tempo de pokemon ".$nome."!!");
         if (ATierList($id[0])) {
             $tier = "A TIER";
             send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
