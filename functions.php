@@ -13,8 +13,9 @@ if ($acao == 'consultaPokemon') {
         //send_whatsapp(" Teste de tempo de pokemon ".$nome."!!");
         if (ATierList($id[0])) {
             $tier = "A TIER";
-            send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
-            send_whatsapp("A wild ".$tier." ".$nome." appears!!");
+            //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
+            //send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
+            //send_whatsapp("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
@@ -272,7 +273,8 @@ function ATierList($id) {
     879,
     884,
     886,
-    887);
+    887,
+    10026);
 
     return in_array($id, $arrayT);
 }
@@ -963,6 +965,7 @@ function retornaNomePokemon($id) {
         "679" => "Honedge",
         "680" => "Doublade",
         "681" => "Aegislash",
+        "10026" => "Aegislash",
         "682" => "Spritzee",
         "683" => "Aromatisse",
         "684" => "Swirlix",
@@ -1868,6 +1871,7 @@ function retornaTipoPokemon($id) {
         "679" => "Steel/Ghost",
         "680" => "Steel/Ghost",
         "681" => "Steel/Ghost",
+        "10026" => "Steel/Ghost",
         "682" => "Fairy",
         "683" => "Fairy",
         "684" => "Fairy",

@@ -105,6 +105,10 @@
                     <source src="atier_sound.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>  
+                <video id="myVideo3" width="320" height="240" controls>
+                    <source src="mission_alert.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>  
             </div>
         </div>
 
@@ -113,6 +117,8 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
+        var tipoMissaoSemanal = "Fairy";
+        
         $(document).ready(function(){
             consultaValorPCG()            
 
@@ -121,29 +127,19 @@
             })
         })
 
-        function mostraVideos() {
-            $('#myVideo').show()
-            $('#myVideo2').show()
-        }
-
-        function escondeVideos() {
-            $('#myVideo').hide()
-            $('#myVideo2').hide()
-        }
-
         function tocaMusica(tier) {
-            if(tier) {
+            if(tier == 1) {
                 var audio = document.getElementById('myVideo2')
-                $('#myVideo2').show()
+            } else if (tier == 2){
+                var audio = document.getElementById('myVideo3')
             } else {
                 var audio = document.getElementById('myVideo')
-                $('#myVideo').show()
             }
             audio.play();           
         }
 
         function veSeTemPokemon() {
-            var src = $('#sprite-image').attr('src'); //"https://poketwitch.bframework.de/static/pokedex/sprites/front/123.gif" //
+            var src = $('#sprite-image').attr('src'); //"https://poketwitch.bframework.de/static/pokedex/sprites/front/123.gif"
             if (spawn != src) {
                 if (src.includes('gif')) { 
                     spawn = src;               
@@ -164,7 +160,11 @@
                             if (resposta.includes('A TIER')) {
                                 tocaMusica(1)                        
                             } else {
-                                tocaMusica(0)
+                                if (tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal)) {
+                                    tocaMusica(2)
+                                } else {
+                                    tocaMusica(0)
+                                } 
                             }
                         } 
                                                                                                     
