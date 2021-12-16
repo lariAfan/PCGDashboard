@@ -14,8 +14,8 @@ if ($acao == 'consultaPokemon') {
         if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
-            send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
-            send_whatsapp("A wild ".$tier." ".$nome." appears!!");
+            //send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
+            //send_whatsapp("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
