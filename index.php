@@ -121,7 +121,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "Fairy";
+        var tipoMissaoSemanal = "";
         
         $(document).ready(function(){
             consultaValorPCG()            
