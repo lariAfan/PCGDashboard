@@ -89,6 +89,12 @@
                             </div>
                         </div>
                     </div> 
+                    <div class="card mt-4">
+                        <div class="card-header">TESTE</div>
+                        <div class="card-body">
+                            <div id="PCGExtension"></div>
+                        </div>
+                    </div>
                 </div> 
                 
                     
@@ -120,7 +126,8 @@
         var tipoMissaoSemanal = "";
         
         $(document).ready(function(){
-            consultaValorPCG()            
+            consultaValorPCG() 
+            consultaPCG()           
 
             $('#btnLimparLista').click(function(){
                 $('#listaPokemons').html('')
@@ -196,6 +203,25 @@
                 $('#original').html(resposta)  
                 veSeTemPokemon()   
                 
+
+            }).fail(function(jqXHR, textStatus ) {
+                console.log("Request failed: " + textStatus);
+
+            }).always(function() {
+                console.log("completou");
+            });
+        }
+            
+        function consultaPCG() {
+            $.ajax({
+                url: "functions.php",
+                type: "POST",
+                data: "acao=pegaPCG",
+                dataType: "html"
+
+            }).done(function(resposta) {
+                //$('#PCGExtension').html(resposta)
+                console.log(resposta)                 
 
             }).fail(function(jqXHR, textStatus ) {
                 console.log("Request failed: " + textStatus);
