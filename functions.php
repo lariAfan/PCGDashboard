@@ -14,7 +14,7 @@ if ($acao == 'consultaPokemon') {
         if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
-            //send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
+            send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
             send_whatsapp("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
@@ -27,10 +27,6 @@ if ($acao == 'consultaPokemon') {
 
 if ($acao == 'pegaPokemao') {
     getIdSpawmPCG();
-}
-
-if ($acao == 'pegaPCG') {
-    getExtensionPCG();
 }
 
 function send_whatsapp($message="Test"){
@@ -81,16 +77,6 @@ function getIdSpawmPCG() {
     echo $dadosSite;
 }
 
-function getExtensionPCG() {
-    // URL DO SITE
-    $url = 'https://www.twitch.tv/popout/zarawki/extensions/pm0qkv9g4h87t5y6lg329oam8j7ze9/panel';
-
-    // PEGANDO TODO CONTEUDO
-    $dadosSite = file_get_contents($url);
-
-    echo $dadosSite;
-}
-
 function wantedList($id) {
     $arrayW = array(
         164,
@@ -102,8 +88,7 @@ function wantedList($id) {
         446,
         565,
         636,
-        687,
-        756
+        687
     );
     return in_array($id, $arrayW);
 }
