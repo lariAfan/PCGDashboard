@@ -108,11 +108,7 @@
                 <video id="myVideo3" width="200" height="150" controls>
                     <source src="mission_alert.mp4" type="video/mp4">
                     Your browser does not support the video tag.
-                </video>  
-                <video id="myVideo4" width="200" height="150" controls>
-                    <source src="xmas_sound.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>  
+                </video>                  
             </div>
         </div>
 
@@ -136,8 +132,6 @@
                 var audio = document.getElementById('myVideo2')
             } else if (tier == 2){
                 var audio = document.getElementById('myVideo3')
-            } else if (tier == 3){
-                var audio = document.getElementById('myVideo4')
             } else {
                 var audio = document.getElementById('myVideo')
             }
@@ -169,11 +163,7 @@
                                 if (tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal)) {
                                     tocaMusica(2)
                                 } else {
-                                    if (resposta.includes('Eletric') || resposta.includes('Ice') || resposta.includes('Steel') ) {
-                                        tocaMusica(3)
-                                    }else {
-                                        tocaMusica(0)
-                                    } 
+                                    tocaMusica(0)                                    
                                 } 
                             }
                         } 

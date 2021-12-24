@@ -79,13 +79,17 @@ function getIdSpawmPCG() {
 
 function wantedList($id) {
     $arrayW = array(
-        38,
         164,
-        171,
-        181,
+        195,
+        219,               
         229,
+        297,
+        334,
         446,
-        636
+        565,
+        636,
+        687,
+        756
     );
     return in_array($id, $arrayW);
 }
