@@ -15,6 +15,7 @@ if ($acao == 'consultaPokemon') {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
             send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
+            send_whatsapp_vinicius("A wild ".$tier." ".$nome." appears!!");
             send_whatsapp("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
@@ -50,6 +51,25 @@ function send_whatsapp($message="Test"){
 function send_whatsapp_evil($message="Test"){
     $phone="+12538202117";  // Enter your phone number here
     $apikey="826227";       // Enter your personal apikey received in step 3 above
+
+    $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
+
+    if($ch = curl_init($url)) {
+        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        $html = curl_exec($ch);
+        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        // echo "Output:".$html;  // you can print the output for troubleshooting
+        curl_close($ch);
+        return (int) $status;
+    } else {
+        return false;
+    }
+}
+
+function send_whatsapp_vinicius($message="Test"){
+    $phone="+5521989561130";  // Enter your phone number here
+    $apikey="958885";       // Enter your personal apikey received in step 3 above
 
     $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
 
