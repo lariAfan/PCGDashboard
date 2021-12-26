@@ -31,7 +31,7 @@
         #pokemao {
             font-style: italic;
         }
-        #btnFizTroca {
+        #btnFizTroca, #btnConsultar {
             background: #c9b552;
             border: #c9b552;
         }
@@ -53,6 +53,74 @@
         #listaPokemons {
             float: right;
             width: 100%;
+        }
+
+        .nomeStatus {
+            width:50px
+        }
+
+        .normal {
+            background-color: #A8A878;
+            color: black;
+        }
+        .fire {
+            background-color: #F08030;
+            color: black;
+        }
+        .water {
+            background-color: #6890F0;
+        }
+        .grass {
+            background-color: #78C850;
+        }
+        .electric {
+            background-color: #F8D030;
+            color:black;
+        }
+        .ice {
+            background-color: #98D8D8;
+            color:black;
+        }
+        .fighting {
+            background-color: #C03028;
+        }
+        .poison {
+            background-color: #A040A0;
+        }
+        .ground {
+            background-color: #E0C068;
+            color:black;
+        }
+        .flying {
+            background-color:#A890F0;
+            color: black;
+        }
+        .psychic {
+            background-color:#F85888;
+        }
+        .bug {
+            background-color:#A8B820;
+            color: black;
+        }
+        .rock {
+            background-color:#B8A038;
+        }
+        .ghost {
+            background-color:#705898;
+        }
+        .dragon {
+            background-color:#7038F8;
+        }
+        .dark {
+            background-color:#705848;
+        }
+        .steel {
+            background-color:#B8B8D0;
+            color:black;
+        }
+        .fairy {
+            background-color:#FF9BE1;
+            color:black;
         }
 
     </style>
@@ -89,6 +157,34 @@
                             </div>
                         </div>
                     </div> 
+                    <div class="card mt-4">
+                        <div class="card-header">Pesquisas</div>
+                        <div class="card-body">
+                            <div class="card-text">
+                                <label class="d-block" style="text-style:italic">Tipo de Consulta</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input tipoOpcoes" type="radio" name="tipoOpcoes" id="tipoPokemon" value="pok" checked=checked>
+                                    <label class="form-check-label" for="tipoPokemon">Dados Pokemon</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input tipoOpcoes" type="radio" name="tipoOpcoes" id="tipoMove" value="move">
+                                    <label class="form-check-label" for="tipoMove">Dados Move</label>
+                                </div>
+                                <div class="mb-3 mt-3 row">
+                                    <div class="col">
+                                        <input type="text" class="form-control-plaintext" id="txtConsulta" name="txtConsulta">
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button class="btn btn-light mt-3" type="button" id="btnConsultar">Consultar Informações</button>
+                                    <button class="btn btn-link mt-3" type="button" id="btnLimparConsulta">Limpar Consulta</button>
+                                </div>
+
+                                <div class="mt-3" id="divResultadoConsulta"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div> 
                 
                     
@@ -117,13 +213,25 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "";
+        var tipoMissaoSemanal = "";        
+        const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
+        'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
+        'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
+        'Dark', 'Steel', 'Fairy']
         
         $(document).ready(function(){
-            consultaValorPCG()            
-
+            consultaValorPCG()   
+                    
             $('#btnLimparLista').click(function(){
                 $('#listaPokemons').html('')
+            })
+
+            $('#btnConsultar').click(function(){
+                if ($('#txtConsulta').val() != "") {
+                    consultar = $('#txtConsulta').val();
+                    console.log($('.tipoOpcoes:checked').val())
+                    consultaDadosPokemon(consultar, $('.tipoOpcoes:checked').val())
+                } 
             })
         })
 
@@ -139,7 +247,7 @@
         }
 
         function veSeTemPokemon() {
-            var src = $('#sprite-image').attr('src'); //"https://poketwitch.bframework.de/static/pokedex/sprites/front/91.gif"
+            var src = $('#sprite-image').attr('src'); //"https://poketwitch.bframework.de/static/pokedex/sprites/front/10.gif"
             if (spawn != src) {
                 if (src.includes('gif')) { 
                     spawn = src;               
@@ -151,7 +259,7 @@
                         dataType: "html"
 
                     }).done(function(resposta) {
-                        console.log(resposta) 
+                        console.log(resposta)
                         if (pokemonAnterior != resposta) {  
                             pokemonAnterior = resposta
                             $('#pokemao').html(resposta)   
@@ -204,6 +312,124 @@
                 console.log("completou");
             });
             
+        }
+
+        function adaptaNome(nome) {
+            var retorno = nome.replace(" ", "-")
+            retorno = retorno.replace(".", "-")
+            retorno = retorno.replace("'", "")
+            return retorno;
+        }
+
+        function adaptaNome2(nome) {
+            var retorno = nome.replace("-", " ")
+            
+            return retorno;
+        }
+
+        function montaTituloPokemon(id, nome) {
+            nomeMaiusculo = nome.toUpperCase()
+            return "<h3 class='text-center'> #"+id+" - "+ nomeMaiusculo +"</h3>"
+        }
+
+        function montaImagemPokemon(url, urlShiny) {
+            var div = "";
+            div += "<div class='d-block text-center'>";
+                div += "<span style='width: 100px; display:inline-block'><img src='"+url+"' style='width:100px; margin: 0 auto' /><i>Normal Form</i></span>&nbsp;&nbsp;"
+                div += "<span style='width: 100px; display:inline-block'><img src='"+urlShiny+"' style='width:100px; margin: 0 auto' /><i>Shiny Form</i></span>"
+            div += "</div>";
+            return div;
+        }
+
+        function montaStatusPokemon(s) {
+            var status = "<div class='valoresStatus mt-2'>";
+            var totalStatus = 0;
+            for (i in s) { 
+                tipoStatus = adaptaNome2(s[i]['stat']['name']);
+                valorStatus = s[i]['base_stat'];
+                totalStatus += valorStatus;
+                status += "<span class='nomeStatus'>"+tipoStatus.toUpperCase() +":</span> "+valorStatus+"<br>"
+            }
+            status += "<strong>TOTAL STATUS: "+totalStatus+"</strong></div>"
+            return status
+        }
+
+        function montaTiposPokemon(tipos, pArray) {
+            var htmlTipo = "<div class='tiposP text-center mt-2'>"
+
+            for (t in pArray) {
+                nomeTipo = pArray[t]['type']['name'].toUpperCase();
+                for (tipo in tipos) {
+                    if (nomeTipo == tipos[tipo].toUpperCase()) {
+                        htmlTipo += "<span class='badge col-5 "+tipos[tipo]+"'>"+nomeTipo+"</span>&nbsp;&nbsp;"
+                        break;
+                    }
+                }                
+            }
+
+            htmlTipo += "</div>";
+            return htmlTipo;
+
+        }
+
+        function consultaDadosPokemon(consulta, tipo) {
+            consulta = adaptaNome(consulta)
+            if (tipo == 'pok'){ 
+                $.ajax({
+                    url: "functions.php",
+                    type: "GET",
+                    contentType: "application/json",
+                    data: "acao=consultaDadosPokemon&pokemon="+consulta,
+                    dataType: "json"
+
+                }).done(function(resposta) {
+                    console.log(resposta)
+                    if (resposta) {                    
+                        var html = "";
+
+                        html += montaTituloPokemon(resposta['id'], resposta['name'])
+                        html += montaImagemPokemon(resposta['sprites']['front_default'], resposta['sprites']['front_shiny'])
+                        html += montaTiposPokemon(tiposPokemon, resposta['types'])
+                        html += montaStatusPokemon(resposta['stats'])
+
+                        $('#divResultadoConsulta').html(html)
+                    } else {
+                        alert ("nao encontramos esse pokemao")
+                    } 
+                    
+
+                }).fail(function(jqXHR, textStatus ) {
+                    console.log("Request failed: " + textStatus);
+
+                }).always(function(d) {
+                    console.log("completou");
+                });
+            } else if (tipo == 'move') {
+                $.ajax({
+                    url: "functions.php",
+                    type: "GET",
+                    contentType: "application/json",
+                    data: "acao=consultaMove&move="+consulta,
+                    dataType: "json"
+
+                }).done(function(resposta) {
+                    if (resposta) {  
+                        console.log(resposta)                  
+                        var html = "";
+
+                        $('#divResultadoConsulta').html(html)
+                    } else {
+                        alert ("nao encontramos esse pokemao")
+                    } 
+                    
+
+                }).fail(function(jqXHR, textStatus ) {
+                    console.log("Request failed: " + textStatus);
+
+                }).always(function(d) {
+                    console.log("completou");
+                });
+            }
         }
 
         const createClock = setInterval(veSeTemPokemon, 30000); 

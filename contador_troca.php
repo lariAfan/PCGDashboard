@@ -68,7 +68,7 @@
         } else {
             date = new Date();            
             horario = addTimes($('#horarioExato').val(), date.getHours() + ":" + date.getMinutes())
-            countDownDate = new Date (new Date().toDateString() + ' ' + (horario+':00'))
+            countDownDate = new Date (new Date().toDateString() + ' ' + (horario+':59'))
         }
 
         // Update the count down every 1 second
