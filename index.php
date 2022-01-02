@@ -187,7 +187,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "Normal";        
+        var tipoMissaoSemanal = "Dragon";        
         const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
         'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
         'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
@@ -242,7 +242,7 @@
                             if (resposta.includes('A TIER')) {
                                 tocaMusica(1)                        
                             } else {
-                                if (tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal)) {
+                                if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) || resposta.includes('WANTED'))) {
                                     tocaMusica(2)
                                 } else {
                                     tocaMusica(0)                                    

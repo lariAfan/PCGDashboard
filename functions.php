@@ -18,7 +18,8 @@ if ($acao == 'consultaPokemon') {
             send_whatsapp_vinicius("A wild ".$tier." ".$nome." appears!!");
             send_whatsapp("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
-            send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
+            $tier = "WANTED";
+            //send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
         $_SESSION['pokemonAnterior'] = $nome; 
     }
