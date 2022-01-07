@@ -10,16 +10,16 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]).' ('.retornaTipoPokemon($id[0]).')';
     if ($nome != $_SESSION['pokemonAnterior']) {
-        //send_whatsapp(" Teste de tempo de pokemon ".$nome."!!");
+        //send_telegram(" Teste Spawn ".$nome."!!");
         if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
             send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
             send_whatsapp_vinicius("A wild ".$tier." ".$nome." appears!!");
-            send_whatsapp("A wild ".$tier." ".$nome." appears!!");
+            send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
-            //send_whatsapp("PEGA O  ".$nome." JÁ JÁ JÁ!!");
+            send_telegram("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
         $_SESSION['pokemonAnterior'] = $nome; 
     }
@@ -29,6 +29,16 @@ if ($acao == 'consultaPokemon') {
 
 if ($acao == 'pegaPokemao') {
     getIdSpawmPCG();
+}
+
+function send_telegram($message) {
+    //https://api.telegram.org/bot/sendMessage?chat_id=&text=Teste%20Mensagem
+    $apiToken = "5043407338:AAHhEyc5ITV3Z9YiXaYYAd9decl5JGa0Ro0";
+    $data = [
+        'chat_id' => '@pcgspaws',
+        'text' => $message
+    ];
+    file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 }
 
 function send_whatsapp($message="Test"){
