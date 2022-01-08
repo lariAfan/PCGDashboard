@@ -19,7 +19,7 @@ if ($acao == 'consultaPokemon') {
             send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
-            send_telegram("PEGA O  ".$nome." JÁ JÁ JÁ!!");
+            //send_telegram("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
         $_SESSION['pokemonAnterior'] = $nome; 
     }
