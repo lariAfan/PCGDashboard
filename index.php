@@ -233,13 +233,13 @@
                         dataType: "html"
 
                     }).done(function(resposta) {
-                        console.log(resposta)
-                        if (pokemonAnterior != resposta) {  
+                        console.log(resposta)                        
+                        if (pokemonAnterior != resposta && resposta != "()") {  
                             pokemonAnterior = resposta
                             $('#pokemao').html(resposta)   
                             $('#listaPokemons').append('<li>'+resposta+'</li>')
 
-                            if (resposta.includes('A TIER')) {
+                            if (resposta.includes('A TIER') || resposta.includes('S TIER')) {
                                 tocaMusica(1)                        
                             } else {
                                 if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) || resposta.includes('WANTED'))) {
@@ -248,7 +248,11 @@
                                     tocaMusica(0)                                    
                                 } 
                             }
-                        } 
+                        } else if (resposta == '()') {
+                            $('#pokemao').html(src)   
+                            $('#listaPokemons').append('<li>'+src+'</li>')
+                            tocaMusica(2)
+                        }
                                                                                                     
 
                     }).fail(function(jqXHR, textStatus ) {

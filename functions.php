@@ -10,8 +10,12 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]).' ('.retornaTipoPokemon($id[0]).')';
     if ($nome != $_SESSION['pokemonAnterior']) {
-        //send_telegram(" Teste Spawn ".$nome."!!");
-        if (ATierList($id[0])) {
+        if (STierList($id[0])) {
+            $tier = "S TIER";
+            send_whatsapp_evil("A wild ".$tier." OMG ".$nome." appears!!");
+            send_whatsapp_vinicius("A wild ".$tier." OMG ".$nome." appears!!");
+            send_telegram("A wild ".$tier." OMG ".$nome." appears!!");
+        }else if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
             send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
@@ -19,7 +23,6 @@ if ($acao == 'consultaPokemon') {
             send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
-            //send_telegram("PEGA O  ".$nome." JÁ JÁ JÁ!!");
         }
         $_SESSION['pokemonAnterior'] = $nome; 
     }
@@ -122,6 +125,105 @@ function wantedList($id) {
         687
     );
     return in_array($id, $arrayW);
+}
+
+function STierList($id) {
+    $arrayS = array (
+        144,
+        145,
+        146,
+        150,
+        151,
+        243,
+        244,
+        245,
+        249,
+        250,
+        251,
+        377,
+        378,
+        379,
+        380,
+        381,
+        382,
+        383,
+        384,
+        385,
+        386,
+        480,
+        481,
+        482,
+        483,
+        484,
+        485,
+        486,
+        487,
+        488,
+        489,
+        490,
+        491,
+        492,
+        493,
+        494,
+        638,
+        639,
+        640,
+        641,
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        716,
+        717,
+        718,
+        719,
+        720,
+        721,
+        772,
+        772,
+        785,
+        786,
+        787,
+        788,
+        789,
+        790,
+        791,
+        792,
+        793,
+        794,
+        795,
+        796,
+        797,
+        798,
+        799,
+        800,
+        801,
+        802,
+        803,
+        804,
+        805,
+        806,
+        807,
+        808,
+        809,
+        888,
+        889,
+        890,
+        891,
+        892,
+        893,
+        894,
+        895,
+        896,
+        897,
+        898
+    );
+
+    return in_array($id, $arrayS);
 }
 
 function ATierList($id) {
@@ -988,6 +1090,25 @@ function retornaNomePokemon($id) {
         "664" => "Scatterbug",
         "665" => "Spewpa",
         "666" => "Vivillon",
+        "10118" => "Vivillon",
+        "10119" => "Vivillon",
+        "10120" => "Vivillon",
+        "10121" => "Vivillon",
+        "10122" => "Vivillon",
+        "10123" => "Vivillon",
+        "10124" => "Vivillon",
+        "10125" => "Vivillon",
+        "10126" => "Vivillon",
+        "10127" => "Vivillon",
+        "10128" => "Vivillon",
+        "10129" => "Vivillon",
+        "10130" => "Vivillon",
+        "10131" => "Vivillon",
+        "10132" => "Vivillon",
+        "10133" => "Vivillon",
+        "10134" => "Vivillon",
+        "10135" => "Vivillon",
+        "10136" => "Vivillon",
         "667" => "Litleo",
         "668" => "Pyroar",
         "669" => "Flabébé",
@@ -1897,6 +2018,25 @@ function retornaTipoPokemon($id) {
         "664" => "Bug",
         "665" => "Bug",
         "666" => "Bug/Flying",
+        "10118" => "Bug/Flying",
+        "10119" => "Bug/Flying",
+        "10120" => "Bug/Flying",
+        "10121" => "Bug/Flying",
+        "10122" => "Bug/Flying",
+        "10123" => "Bug/Flying",
+        "10124" => "Bug/Flying",
+        "10125" => "Bug/Flying",
+        "10126" => "Bug/Flying",
+        "10127" => "Bug/Flying",
+        "10128" => "Bug/Flying",
+        "10129" => "Bug/Flying",
+        "10130" => "Bug/Flying",
+        "10131" => "Bug/Flying",
+        "10132" => "Bug/Flying",
+        "10133" => "Bug/Flying",
+        "10134" => "Bug/Flying",
+        "10135" => "Bug/Flying",
+        "10136" => "Bug/Flying",
         "667" => "Fire/Normal",
         "668" => "Fire/Normal",
         "669" => "Fairy",
