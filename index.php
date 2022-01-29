@@ -187,7 +187,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "Steel";        
+        var tipoMissaoSemanal = "";        
         const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
         'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
         'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
@@ -234,7 +234,7 @@
 
                     }).done(function(resposta) {
                         console.log(resposta)                        
-                        if (pokemonAnterior != resposta && resposta != "()") {  
+                        if (pokemonAnterior != resposta && resposta != " () ") {  
                             pokemonAnterior = resposta
                             $('#pokemao').html(resposta)   
                             $('#listaPokemons').append('<li>'+resposta+'</li>')
@@ -248,7 +248,7 @@
                                     tocaMusica(0)                                    
                                 } 
                             }
-                        } else if (resposta == '()') {
+                        } else if (resposta == ' () ') {
                             $('#pokemao').html(src)   
                             $('#listaPokemons').append('<li>'+src+'</li>')
                             tocaMusica(2)
