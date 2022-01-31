@@ -228,11 +228,8 @@ function STierList($id) {
 
 function ATierList($id) {
     $arrayT = array (
-    2,
     3,
-    5,
     6,
-    8,
     9,
     26,
     31,
@@ -245,6 +242,7 @@ function ATierList($id) {
     71,
     76,
     94,
+    121,
     130,
     131,
     134,
@@ -300,6 +298,7 @@ function ATierList($id) {
     409,
     411,
     416,
+    426,
     429,
     430,
     442,
