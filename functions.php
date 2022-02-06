@@ -10,20 +10,22 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]).' ('.retornaTipoPokemon($id[0]).')';
     if ($nome != $_SESSION['pokemonAnterior']) {
+        if (str_contains($nome, 'Ground')) {
+            send_whatsapp_vinicius("POKEMON SEMANAL, VINICIUS: ".$tier." - ".$nome."!!");
+        }
         if (STierList($id[0])) {
             $tier = "S TIER";
-            send_whatsapp_evil("A wild ".$tier." OMG ".$nome." appears!!");
             send_whatsapp_vinicius("A wild ".$tier." OMG ".$nome." appears!!");
             send_telegram("A wild ".$tier." OMG ".$nome." appears!!");
         }else if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
-            send_whatsapp_evil("A wild ".$tier." ".$nome." appears!!");
+            
             send_whatsapp_vinicius("A wild ".$tier." ".$nome." appears!!");
             send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
-        }
+        } 
         $_SESSION['pokemonAnterior'] = $nome; 
     }
     
@@ -42,43 +44,6 @@ function send_telegram($message) {
         'text' => $message
     ];
     file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
-}
-
-function send_whatsapp($message="Test"){
-    $phone="+5519988030484";  // Enter your phone number here
-    $apikey="353653";       // Enter your personal apikey received in step 3 above
-
-    $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
-
-    if($ch = curl_init($url)) {
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $html = curl_exec($ch);
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        // echo "Output:".$html;  // you can print the output for troubleshooting
-        curl_close($ch);
-        return (int) $status;
-    } else {
-        return false;
-    }
-}
-function send_whatsapp_evil($message="Test"){
-    $phone="+12538202117";  // Enter your phone number here
-    $apikey="826227";       // Enter your personal apikey received in step 3 above
-
-    $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
-
-    if($ch = curl_init($url)) {
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $html = curl_exec($ch);
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        // echo "Output:".$html;  // you can print the output for troubleshooting
-        curl_close($ch);
-        return (int) $status;
-    } else {
-        return false;
-    }
 }
 
 function send_whatsapp_vinicius($message="Test"){
@@ -1193,6 +1158,7 @@ function retornaNomePokemon($id) {
         "743" => "Ribombee",
         "744" => "Rockruff",
         "745" => "Lycanroc",
+        "10116" => "Lycanroc",
         "10117" => "Lycanroc",
         "746" => "Wishiwashi",
         "747" => "Mareanie",
@@ -2127,6 +2093,7 @@ function retornaTipoPokemon($id) {
         "744" => "Rock",
         "745" => "Rock",
         "10117" => "Rock",
+        "10116" => "Rock",
         "746" => "Water",
         "747" => "Poison/Water",
         "748" => "Poison/Water",
