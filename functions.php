@@ -10,9 +10,9 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]).' ('.retornaTipoPokemon($id[0]).')';
     if ($nome != $_SESSION['pokemonAnterior']) {
-        if (str_contains($nome, 'Ground')) {
+        /*if (str_contains($nome, 'Ground')) {
             send_whatsapp_vinicius("POKEMON SEMANAL, VINICIUS: ".$tier." - ".$nome."!!");
-        }
+        }*/
         if (STierList($id[0])) {
             $tier = "S TIER";
             send_whatsapp_vinicius("A wild ".$tier." OMG ".$nome." appears!!");
@@ -20,8 +20,6 @@ if ($acao == 'consultaPokemon') {
         }else if (ATierList($id[0])) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
-            
-            send_whatsapp_vinicius("A wild ".$tier." ".$nome." appears!!");
             send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
