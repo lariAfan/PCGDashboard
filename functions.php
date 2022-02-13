@@ -34,8 +34,11 @@ if ($acao == 'pegaPokemao') {
     getIdSpawmPCG();
 }
 
+if ($acao == 'pegaContador') {
+    getTimerPCG();
+}
+
 function send_telegram($message) {
-    //https://api.telegram.org/bot/sendMessage?chat_id=&text=Teste%20Mensagem
     $apiToken = "5043407338:AAHhEyc5ITV3Z9YiXaYYAd9decl5JGa0Ro0";
     $data = [
         'chat_id' => '@pcgspaws',
@@ -67,6 +70,16 @@ function send_whatsapp_vinicius($message="Test"){
 function getIdSpawmPCG() {
     // URL DO SITE
     $url = 'https://poketwitch.bframework.de/info/events/show_current_pokemon/?gif=true';
+
+    // PEGANDO TODO CONTEUDO
+    $dadosSite = file_get_contents($url);
+
+    echo $dadosSite;
+}
+
+function getTimerPCG() {
+    // URL DO SITE
+    $url = 'https://poketwitch.bframework.de/info/events/spawn_cooldown/';
 
     // PEGANDO TODO CONTEUDO
     $dadosSite = file_get_contents($url);

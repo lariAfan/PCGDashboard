@@ -4,6 +4,7 @@
 ?>
 <html>
     <head>
+        <title>SPAWN PCG</title>
         <script src="//www.devmedia.com.br/js/jquery.min.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -42,7 +43,7 @@
             border-radius: 5px;
         }
 
-        #countDown {
+        #contador {
             font-size: 25px;
             font-weight: bold;
             margin: 0 auto;
@@ -123,15 +124,28 @@
             color:black;
         }
 
+        #timerPokemon {
+            position:absolute;
+            right: 30;
+        }
+
+        #timerPokemon h1 {
+            font-size:30px!important;
+            font-weight:bold;
+        }
+
     </style>
     <body>
         <div class="container">
             <div class="row justify-content-around mt-3">
                 <div class="col-5">
                     <div class="card">                    
-                        <div class="card-header">WHO'S THAT POKEMON</div>
+                        <div class="card-header">WHO'S THAT POKEMON - 
+                            <button type="button" class='btn btn-link btn-sm' id="atualizaContador">Atualizar Contador</button>
+                        </div>
                         <div class="card-body text-center">                       
                             <div class="card-text">
+                                <div id="timerPokemon"></div>
                                 <div id="original"></div>
                                 <span id="pokemao"></span>                    
                             </div>
@@ -187,7 +201,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "";        
+        var tipoMissaoSemanal = "Rock";        
         const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
         'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
         'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
@@ -195,6 +209,13 @@
         
         $(document).ready(function(){
             consultaValorPCG()   
+            getContador()
+
+            $('#atualizaContador').click(function(){
+                $('#timerPokemon').remove();
+                $('#original').before('<div id="timerPokemon"></div>');
+                getContador()
+            })
                     
             $('#btnLimparLista').click(function(){
                 $('#listaPokemons').html('')
@@ -267,6 +288,26 @@
             } 
             //document.getElementById('pokemao').textContent = time;
             
+        }
+
+        function getContador() {
+            $.ajax({
+                url: "functions.php",
+                type: "POST",
+                data: "acao=pegaContador",
+                dataType: "html"
+
+            }).done(function(resposta) {
+                
+                $('#timerPokemon').html(resposta)  
+                                
+
+            }).fail(function(jqXHR, textStatus ) {
+                console.log("Request failed: " + textStatus);
+
+            }).always(function() {
+                console.log("completou timer");
+            });
         }
 
         function consultaValorPCG() {

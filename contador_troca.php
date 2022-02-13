@@ -1,6 +1,6 @@
 
 
-<span id="countDown" class="mb-3" style="display:none;"></span>
+<span id="contador" class="mb-3" style="display:none;"></span>
 
 <label class="d-block" style="text-style:italic">Tipo de horário</label>
 <div class="form-check form-check-inline">
@@ -61,14 +61,14 @@
     })
 
     $('#btnFizTroca').click(function(){
-        $('#countDown').show()
+        $('#contador').show()
         clearInterval(x);
         if ($('#inlineRadio1').prop('checked')) {
-            countDownDate = new Date().addHours(3);
+            contadorDate = new Date().addHours(3);
         } else {
             date = new Date();            
             horario = addTimes($('#horarioExato').val(), date.getHours() + ":" + date.getMinutes())
-            countDownDate = new Date (new Date().toDateString() + ' ' + (horario+':59'))
+            contadorDate = new Date (new Date().toDateString() + ' ' + (horario+':59'))
         }
 
         // Update the count down every 1 second
@@ -78,7 +78,7 @@
             var now = new Date().getTime();
 
             // Find the distance between now and the count down date
-            var distance = countDownDate - now;
+            var distance = contadorDate - now;
 
             // Time calculations for hours, minutes and seconds
             var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -86,18 +86,18 @@
             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
             // Display the result in the element with id="demo"
-            document.getElementById("countDown").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
+            document.getElementById("contador").innerHTML = hours + "h "+ minutes + "m " + seconds + "s ";
 
             // If the count down is finished, write some text
             if (distance < 0) {
                 clearInterval(x);
                 tocaMusica(0)
-                $('#countDown').html('HORA DE FAZER TROCA');
+                $('#contador').html('HORA DE FAZER TROCA');
             }
 
             $('#btnReseta').click(function(){
                 clearInterval(x);
-                $('#countDown').html('')
+                $('#contador').html('')
             })
         }, 1000);
 
