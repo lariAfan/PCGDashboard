@@ -260,10 +260,10 @@
                             $('#pokemao').html(resposta)   
                             $('#listaPokemons').append('<li>'+resposta+'</li>')
 
-                            if (resposta.includes('A TIER') || resposta.includes('S TIER')) {
+                            if (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED')) {
                                 tocaMusica(1)                        
                             } else {
-                                if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) || resposta.includes('WANTED'))) {
+                                if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) )) {
                                     tocaMusica(2)
                                 } else {
                                     tocaMusica(0)                                    
