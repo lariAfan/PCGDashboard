@@ -91,7 +91,6 @@ function wantedList($id) {
     $arrayW = array(
         84,
         107,
-        132,
         188,
         202,
         262,
