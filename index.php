@@ -201,7 +201,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "Water";        
+        var tipoMissaoSemanal = "";        
         const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
         'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
         'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
