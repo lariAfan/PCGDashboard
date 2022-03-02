@@ -90,7 +90,6 @@ function getTimerPCG() {
 function wantedList($id) {
     $arrayW = array(
         84,
-        107,
         188,
         202,
         262,
