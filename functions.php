@@ -92,8 +92,6 @@ function wantedList($id) {
         23,
         48,
         50,
-        54,
-        84,
         88,
         90,
         129,
