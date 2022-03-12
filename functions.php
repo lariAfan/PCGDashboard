@@ -10,9 +10,7 @@ if ($acao == 'consultaPokemon') {
     $tier = "";
     $nome = retornaNomePokemon($id[0]).' ('.retornaTipoPokemon($id[0]).')';
     if ($nome != $_SESSION['pokemonAnterior']) {
-        /*if (str_contains($nome, 'Ground')) {
-            send_whatsapp_vinicius("POKEMON SEMANAL, VINICIUS: ".$tier." - ".$nome."!!");
-        }*/
+        
         send_telegram_vini("A wild ".$tier." ".$nome." appears!!");
         if (STierList($id[0])) {
             $tier = "S TIER";
