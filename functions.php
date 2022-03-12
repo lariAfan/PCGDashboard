@@ -13,6 +13,7 @@ if ($acao == 'consultaPokemon') {
         /*if (str_contains($nome, 'Ground')) {
             send_whatsapp_vinicius("POKEMON SEMANAL, VINICIUS: ".$tier." - ".$nome."!!");
         }*/
+        send_telegram_vini("A wild ".$tier." ".$nome." appears!!");
         if (STierList($id[0])) {
             $tier = "S TIER";
             send_whatsapp_vinicius("A wild ".$tier." OMG ".$nome." appears!!");
@@ -47,23 +48,13 @@ function send_telegram($message) {
     file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 }
 
-function send_whatsapp_vinicius($message="Test"){
-    $phone="+5521989561130";  // Enter your phone number here
-    $apikey="958885";       // Enter your personal apikey received in step 3 above
-
-    $url='https://api.callmebot.com/whatsapp.php?source=php&phone='.$phone.'&text='.urlencode($message).'&apikey='.$apikey;
-
-    if($ch = curl_init($url)) {
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt ($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        $html = curl_exec($ch);
-        $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        // echo "Output:".$html;  // you can print the output for troubleshooting
-        curl_close($ch);
-        return (int) $status;
-    } else {
-        return false;
-    }
+function send_telegram_vini($message="Test"){
+    $apiToken = "5203385948:AAEk6-ok1WBqo4GYF7s3s4H4Hrt79FYHUPU";
+    $data = [
+        'chat_id' => '@wantedvinipcg',
+        'text' => $message
+    ];
+    file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );    
 }
 
 
