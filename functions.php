@@ -23,6 +23,12 @@ if ($acao == 'consultaPokemon') {
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
         } 
+        
+        if (wantedListVini($id[0])) {
+            send_telegram_vini("A wild ".$tier." ".$nome." appears!!");
+
+        }
+        
         $_SESSION['pokemonAnterior'] = $nome; 
     }
     
@@ -86,6 +92,15 @@ function wantedList($id) {
         562,
         598,
         678
+    );
+    return in_array($id, $arrayW);
+}
+
+function wantedListVini($id) {
+    $arrayW = array(
+        265,
+        527,
+        547
     );
     return in_array($id, $arrayW);
 }
