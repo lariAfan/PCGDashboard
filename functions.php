@@ -96,7 +96,6 @@ function wantedList($id) {
 
 function wantedListVini($id) {
     $arrayW = array(
-        265,
         527,
         547
     );
