@@ -82,8 +82,11 @@ function getTimerPCG() {
 
 function wantedList($id) {
     $arrayW = array(
-        88,
-        202,
+        88, 
+        178,
+        207,
+        213,
+        223,
         262,
         547,
         562,
