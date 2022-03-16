@@ -13,7 +13,6 @@ if ($acao == 'consultaPokemon') {
         
         if (STierList($id[0])) {
             $tier = "S TIER";
-            send_whatsapp_vinicius("A wild ".$tier." OMG ".$nome." appears!!");
             send_telegram("A wild ".$tier." OMG ".$nome." appears!!");
         }else if (ATierList($id[0])) {
             $tier = "A TIER";
@@ -22,10 +21,6 @@ if ($acao == 'consultaPokemon') {
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
         } 
-        
-        if (wantedListVini($id[0])) {
-            send_telegram_vini("A wild ".$tier." ".$nome." appears!!");
-        }
         
         $_SESSION['pokemonAnterior'] = $nome; 
     }
@@ -49,16 +44,6 @@ function send_telegram($message) {
     ];
     file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );
 }
-
-function send_telegram_vini($message="Test"){
-    $apiToken = "5203385948:AAEk6-ok1WBqo4GYF7s3s4H4Hrt79FYHUPU";
-    $data = [
-        'chat_id' => '@wantedvinipcg',
-        'text' => $message
-    ];
-    file_get_contents("https://api.telegram.org/bot$apiToken/sendMessage?" . http_build_query($data) );    
-}
-
 
 function getIdSpawmPCG() {
     // URL DO SITE
@@ -90,14 +75,6 @@ function wantedList($id) {
         562,
         598,
         678
-    );
-    return in_array($id, $arrayW);
-}
-
-function wantedListVini($id) {
-    $arrayW = array(
-        527,
-        547
     );
     return in_array($id, $arrayW);
 }
