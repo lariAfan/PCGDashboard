@@ -14,13 +14,17 @@ if ($acao == 'consultaPokemon') {
         if (STierList($id[0])) {
             $tier = "S TIER";
             send_telegram("A wild ".$tier." OMG ".$nome." appears!!");
-        }else if (ATierList($id[0])) {
+        }else if (ATierList($id[0]) ) {
             $tier = "A TIER";
             //src="https://poketwitch.bframework.de/static/pokedex/sprites/front/10026.gif"
             send_telegram("A wild ".$tier." ".$nome." appears!!");
         } else if (wantedList($id[0])) {
             $tier = "WANTED";
         } 
+
+        if(retornaNomePokemon($id[0]) == 'Vivillon') {
+            send_telegram("A wild ".$nome." appears!!");
+        }
         
         $_SESSION['pokemonAnterior'] = $nome; 
     }
