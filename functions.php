@@ -79,7 +79,6 @@ function wantedList($id) {
         299,
         332,
         352,
-        562,
         598,
         678
     );
