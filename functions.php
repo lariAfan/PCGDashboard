@@ -77,8 +77,7 @@ function wantedList($id) {
         294,
         332,
         352,
-        598,
-        678
+        598
     );
     return in_array($id, $arrayW);
 }
