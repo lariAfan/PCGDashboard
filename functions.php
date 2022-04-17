@@ -563,7 +563,7 @@ function retornaNomePokemon($id) {
         "183" => "Marill",
         "184" => "Azumarill",
         "185" => "Sudowoodo",
-        "186" => "Politoad",
+        "186" => "Politoed",
         "187" => "Hoppip",
         "188" => "Skiploom",
         "189" => "Jumpluff",

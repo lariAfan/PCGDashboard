@@ -201,7 +201,7 @@
     <script>
         var pokemonAnterior = "";
         var spawn = "";
-        var tipoMissaoSemanal = "Grass";        
+        var tipoMissaoSemanal = "Water";        
         const tiposPokemon = ['Normal','Fire', 'Water', 'Grass', 
         'Electric', 'Ice', 'Fighting', 'Poison', 'Ground', 
         'Flying', 'Psychic', 'Bug', 'Rock', 'Ghost', 'Dragon',
@@ -260,10 +260,11 @@
                             $('#pokemao').html(resposta)   
                             $('#listaPokemons').append('<li>'+resposta+'</li>')
 
-                            if (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED')) {
+                            if (resposta.includes('Politoed')) {
+                            //if (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED')) {
                                 tocaMusica(1)                        
                             } else {
-                                if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) )) {
+                                if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) ) || (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED'))) {
                                     tocaMusica(2)
                                 } else {
                                     tocaMusica(0)                                    
