@@ -232,6 +232,7 @@
 
         function tocaMusica(tier) {
             if(tier == 1) {
+                //super alto
                 var audio = document.getElementById('myVideo2')
             } else if (tier == 2){
                 var audio = document.getElementById('myVideo3')
@@ -261,7 +262,6 @@
                             $('#listaPokemons').append('<li>'+resposta+'</li>')
 
                             if (resposta.includes('Politoed')) {
-                            //if (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED')) {
                                 tocaMusica(1)                        
                             } else {
                                 if ((tipoMissaoSemanal && resposta.includes(tipoMissaoSemanal) ) || (resposta.includes('A TIER') || resposta.includes('S TIER') || resposta.includes('WANTED'))) {
